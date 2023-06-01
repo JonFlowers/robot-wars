@@ -3,6 +3,7 @@ from robotwarapp.model.robot import Robot
 from robotwarapp.exceptions import InvalidArenaInput, InvalidRobotInput, RobotOutOfBounds, ArenaNotSetUp, InvalidMoveRobotInput, LocationOccupied
 from robotwarapp.inputvalidator import InputValidator
 
+
 class RobotWarController:
 
     def __init__(self, no_of_robots):
@@ -15,10 +16,11 @@ class RobotWarController:
             return "invalid_arena_input"
         self.robot_war.set_up_arena(coords)
         return "arena_ready"
-    
+
     def handle_robot_input(self, robotinput):
         try:
-            position = InputValidator.validate_robot_input(robotinput, Robot.directions)
+            position = InputValidator.validate_robot_input(
+                robotinput, Robot.directions)
         except InvalidRobotInput:
             return "invalid_robot_input"
         try:
@@ -31,11 +33,13 @@ class RobotWarController:
 
     def handle_move_robot_input(self, robot, moverobotinput):
         try:
-            move_commands = InputValidator.validate_move_robot_input(moverobotinput, Robot.commands.values())
+            move_commands = InputValidator.validate_move_robot_input(
+                moverobotinput, Robot.commands.values()
+            )
         except InvalidMoveRobotInput:
             return "invalid_move_robot_input"
         try:
-            self.robot_war.robots[robot-1].control(move_commands, self.robot_war)
+            self.robot_war.robots[robot].control(move_commands, self.robot_war)
         except RobotOutOfBounds:
             return "robot_moved_out_of_arena"
         except LocationOccupied:

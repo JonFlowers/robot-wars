@@ -1,5 +1,6 @@
 from robotwarapp.exceptions import RobotOutOfBounds, LocationOccupied
 
+
 class Robot:
 
     commands = {
@@ -16,7 +17,7 @@ class Robot:
         self.x = x
         self.y = y
         self.dir = dir
-    
+
     def set_x(self, x, arena):
         if arena.is_valid_location(x, self.y) is not True:
             raise RobotOutOfBounds
@@ -38,18 +39,26 @@ class Robot:
                 self.turn_right()
             elif command == self.commands["move"]:
                 self.move(robot_war)
-    
+
     def turn_left(self):
-        if self.dir == "N": self.dir = "W"
-        elif self.dir == "E": self.dir = "N"
-        elif self.dir == "S": self.dir = "E"
-        elif self.dir == "W": self.dir = "S"
+        if self.dir == "N":
+            self.dir = "W"
+        elif self.dir == "E":
+            self.dir = "N"
+        elif self.dir == "S":
+            self.dir = "E"
+        elif self.dir == "W":
+            self.dir = "S"
 
     def turn_right(self):
-        if self.dir == "N": self.dir = "E"
-        elif self.dir == "E": self.dir = "S"
-        elif self.dir == "S": self.dir = "W"
-        elif self.dir == "W": self.dir = "N"
+        if self.dir == "N":
+            self.dir = "E"
+        elif self.dir == "E":
+            self.dir = "S"
+        elif self.dir == "S":
+            self.dir = "W"
+        elif self.dir == "W":
+            self.dir = "N"
 
     def move(self, robot_war):
         new_x = self.x
@@ -62,7 +71,7 @@ class Robot:
             new_x = self.x - 1
         elif self.dir == "W":
             new_y = self.y - 1
-        
+
         if robot_war.is_location_occupied(new_x, new_y):
             raise LocationOccupied
         self.set_x(new_x, robot_war.arena)
