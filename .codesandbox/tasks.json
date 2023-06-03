@@ -1,6 +1,11 @@
 {
   // These tasks will run in order when initializing your CodeSandbox project.
-  "setupTasks": ["pip install -r requirements.txt"],
+  "setupTasks": [
+    {
+      "name": "pip install -r requirements.txt",
+      "command": "pip install -r requirements.txt"
+    }
+  ],
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
@@ -9,19 +14,29 @@
       "command": "python main.py",
       "runAtStart": true,
       "restartOn": {
-        "files": ["main.py"]
+        "files": [
+          "main.py"
+        ],
+        "branch": false
       }
     },
     "install-dependencies": {
       "name": "Installing Dependencies",
       "command": "pip install -r requirements.txt",
       "restartOn": {
-        "files": ["requirements.txt"]
+        "files": [
+          "requirements.txt"
+        ],
+        "branch": false
       }
     },
     "test": {
       "name": "test",
       "command": "python -m unittest -v"
+    },
+    "behave": {
+      "name": "behave",
+      "command": "behave"
     }
   }
 }
