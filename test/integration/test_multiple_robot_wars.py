@@ -14,7 +14,11 @@ class TestMultipleRobotWars(unittest.TestCase):
         self.robot_war_app_two.handle_robot_input("4 4 S")
 
     def test_no_of_robots(self):
-        pass
+        self.robot_war_app_one.handle_robot_input("1 1 N")
+        self.robot_war_app_one.handle_move_robot_input(0, "MMRMMLM")
+        self.robot_war_app_two.handle_robot_input("1 1 E")
+        self.robot_war_app_two.handle_move_robot_input(0, "MM")
+        self.assertTrue(len(self.robot_war_app_one.get_final_positions()) == 1)
 
     def tearDown(self):
         del self.robot_war_app_one
