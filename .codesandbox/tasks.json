@@ -18,6 +18,10 @@
       "restartOn": {
         "files": ["requirements.txt"]
       }
+    },
+    "test": {
+      "name": "test",
+      "command": "python -m unittest -v"
     }
   }
 }
