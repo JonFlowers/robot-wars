@@ -9,6 +9,7 @@ class RobotWar:
         self.arena = Arena()
         self.no_of_robots = no_of_robots
         self.robots = []
+        self.robot_attacked = False
 
     def set_up_arena(self, coords):
         self.arena.set_x(coords[0])
@@ -27,3 +28,6 @@ class RobotWar:
             if robot.x == x and robot.y == y:
                 return True
         return False
+
+    def attack(self):
+        self.robot_attacked = True

@@ -38,7 +38,9 @@ class Robot:
             elif command == self.commands["turn_right"]:
                 self.turn_right()
             elif command == self.commands["move"]:
-                self.move(robot_war)
+                self.move(robot_war) 
+                if robot_war.robot_attacked is True:
+                    return
 
     def turn_left(self):
         if self.dir == "N":
@@ -64,15 +66,16 @@ class Robot:
         new_x = self.x
         new_y = self.y
         if self.dir == "N":
-            new_x = self.x + 1
-        elif self.dir == "E":
             new_y = self.y + 1
+        elif self.dir == "E":
+            new_x = self.x + 1
         elif self.dir == "S":
-            new_x = self.x - 1
-        elif self.dir == "W":
             new_y = self.y - 1
+        elif self.dir == "W":
+            new_x = self.x - 1
 
         if robot_war.is_location_occupied(new_x, new_y):
-            raise LocationOccupied
+            robot_war.attack()
+
         self.set_x(new_x, robot_war.arena)
         self.set_y(new_y, robot_war.arena)
