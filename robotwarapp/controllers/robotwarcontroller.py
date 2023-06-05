@@ -42,8 +42,8 @@ class RobotWarController:
             self.robot_war.robots[robot].control(move_commands, self.robot_war)
         except RobotOutOfBounds:
             return "robot_moved_out_of_arena"
-        except LocationOccupied:
-            return "robot_moved_into_occupied_location"
+        if self.robot_war.robot_attacked is True:
+            return "robot_attacked"
         return "robot_moved"
 
     def get_final_positions(self):

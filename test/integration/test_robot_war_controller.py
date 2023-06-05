@@ -61,5 +61,13 @@ class TestRobotWarController(unittest.TestCase):
                 self.app.handle_robot_input(input) == "invalid_robot_input"
                 )
 
+    def test_robot_moved_to_occupied_location(self):
+        self.app.handle_arena_input("5 5")
+        self.app.handle_robot_input("1 1 N")
+        self.app.handle_robot_input("2 2 N")
+        self.assertTrue(
+            self.app.handle_move_robot_input(0, "MRM") == "robot_attacked"
+        )
+
     def tearDown(self):
         del self.app

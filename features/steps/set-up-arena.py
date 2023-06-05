@@ -1,6 +1,7 @@
 from behave import *
 from robotwarapp.controllers.robotwarcontroller import *
 
+
 @given('the Robot Wars app has been run "{robots}"')
 def run_robot_wars(context, robots):
     context.app = RobotWarController(robots)

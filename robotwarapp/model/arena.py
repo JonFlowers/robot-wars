@@ -1,7 +1,8 @@
 class Arena:
 
-    x = 0
-    y = 0
+    def __init__(self):
+        self.x = 0
+        self.y = 0
 
     def set_x(self, x):
         self.x = x
