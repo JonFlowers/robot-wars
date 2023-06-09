@@ -32,3 +32,4 @@ class InputValidator:
             if command not in commands:
                 raise InvalidMoveRobotInput
         return moverobotinput
+

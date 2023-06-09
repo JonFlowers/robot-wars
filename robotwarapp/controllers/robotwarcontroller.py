@@ -1,7 +1,7 @@
 from robotwarapp.model.robotwar import RobotWar
 from robotwarapp.model.robot import Robot
 from robotwarapp.exceptions import InvalidArenaInput, InvalidRobotInput, RobotOutOfBounds, ArenaNotSetUp, InvalidMoveRobotInput, LocationOccupied
-from robotwarapp.inputvalidator import InputValidator
+from robotwarapp.helpers.inputvalidator import InputValidator
 
 
 class RobotWarController:
