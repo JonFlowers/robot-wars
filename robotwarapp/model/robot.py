@@ -75,7 +75,8 @@ class Robot:
             new_x = self.x - 1
 
         if robot_war.is_location_occupied(new_x, new_y):
-            robot_war.attack()
+            robot_war.attack(self, 
+                             robot_war.get_robot_in_location(new_x, new_y))
 
         self.set_x(new_x, robot_war.arena)
         self.set_y(new_y, robot_war.arena)

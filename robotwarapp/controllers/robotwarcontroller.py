@@ -1,6 +1,6 @@
 from robotwarapp.model.robotwar import RobotWar
 from robotwarapp.model.robot import Robot
-from robotwarapp.exceptions import InvalidArenaInput, InvalidRobotInput, RobotOutOfBounds, ArenaNotSetUp, InvalidMoveRobotInput, LocationOccupied
+from robotwarapp.exceptions import InvalidArenaInput, InvalidRobotInput, RobotOutOfBounds, ArenaNotSetUp, InvalidMoveRobotInput, LocationOccupied, InvalidStrategyInput
 from robotwarapp.helpers.inputvalidator import InputValidator
 
 
@@ -45,6 +45,16 @@ class RobotWarController:
         if self.robot_war.robot_attacked is True:
             return "robot_attacked"
         return "robot_moved"
+
+    def handle_strategy_input(self, strategy_input):
+        try:
+            strategy = InputValidator.validate_strategy_input(
+                strategy_input, RobotWar.attack_strategies
+            )
+        except InvalidStrategyInput:
+            return "invalid_strategy_input"
+        self.robot_war.battle("offensive")
+        return "battle_finished"
 
     def get_final_positions(self):
         return [{

@@ -17,7 +17,10 @@ if __name__ == '__main__':
         "invalid_move_robot_input": "You entered invalid move robot input.",
         "robot_moved_out_of_arena": "Your robot moved beyond the bounds of the arena.",
         "robot_moved_into_occupied_location": "Your robot moved into a location occupied by another robot.",
-        "robot_attacked": "You attacked a robot!"
+        "robot_attacked": "You attacked a robot!",
+        "attack_strategy": "Enter your attack strategy.  1 = offensive, 2 = defensive ",
+        "invalid_strategy_input": "You entered invalid strategy input.",
+        "battle_finished": "The battle has finished."
     }
 
     # Initialise the Robot Wars app
@@ -52,6 +55,15 @@ if __name__ == '__main__':
             print(output[response])
             if response == "robot_moved" or response == "robot_attacked":
                 break
+    
+        if response == "robot_attacked":
+            while True:
+                response = app.handle_strategy_input(
+                    input(output["attack_strategy"])
+                )
+                print(output[response])
+                if response == "battle_finished":
+                    break
 
     # Print final positions
     final_positions = app.get_final_positions()

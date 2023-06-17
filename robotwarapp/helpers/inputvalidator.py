@@ -1,4 +1,5 @@
-from robotwarapp.exceptions import InvalidArenaInput, InvalidRobotInput, InvalidMoveRobotInput
+from robotwarapp.exceptions import InvalidArenaInput, InvalidRobotInput, InvalidMoveRobotInput, InvalidStrategyInput
+
 
 class InputValidator:
 
@@ -20,7 +21,9 @@ class InputValidator:
             position[0] = int(position[0])
             position[1] = int(position[1])
         except ValueError:
-            raise InvalidRobotInput 
+            raise InvalidRobotInput
+        except IndexError:
+            raise InvalidRobotInput
         if len(position) != 3:
             raise InvalidRobotInput
         if position[2].upper() not in directions:
@@ -33,3 +36,10 @@ class InputValidator:
                 raise InvalidMoveRobotInput
         return moverobotinput
 
+    def validate_strategy_input(strategyinput, strategies):
+        try:
+            if int(strategyinput) > len(strategies):
+                raise InvalidStrategyInput
+        except ValueError:
+            raise InvalidStrategyInput
+        return strategies[int(strategyinput) - 1]
